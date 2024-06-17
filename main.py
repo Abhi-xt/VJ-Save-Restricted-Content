@@ -87,7 +87,7 @@ def progress(current, total, message, type):
 # start command
 @bot.on_message(filters.command(["start"]) & filters.user(Auth))
 def send_start(client: pyrogram.client.Client, message: pyrogram.types.messages_and_media.message.Message):
-	bot.send_message(message.chat.id, f"__👋 Hi **{message.from_user.mention}**, I am Save Restricted Bot, I can send you restricted content by it's post link__\n\n{USAGE}",
+	bot.send_message(message.chat.id, f"__👋 Hi **{message.from_user.mention}** , I am Save Restricted Content Bot.\n\n{USAGE}\n\n ** Sorry ❗ Not Authorised.**",
 	reply_markup=InlineKeyboardMarkup([[ InlineKeyboardButton("🌐 Source Code", url="https://github.com/bipinkrish/Save-Restricted-Bot")]]), reply_to_message_id=message.id)
 
 @bot.on_message(filters.text & filters.user(Auth))
