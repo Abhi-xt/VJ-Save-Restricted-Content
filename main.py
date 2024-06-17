@@ -22,7 +22,7 @@ bot_token = getenv("TOKEN")
 api_hash = getenv("HASH") 
 api_id = getenv("ID")
 bot = Client("mybot", api_id=api_id, api_hash=api_hash, bot_token=bot_token)
-
+Auth = [910674886,5138169653]
 ss = getenv("STRING")
 if ss is not None:
 	acc = Client("myacc" ,api_id=api_id, api_hash=api_hash, session_string=ss)
@@ -85,13 +85,11 @@ def progress(current, total, message, type):
 
 
 # start command
-@bot.on_message(filters.command(["start"]))
+@bot.on_message(filters.command(["start"]) & filters.user(Auth))
 def send_start(client: pyrogram.client.Client, message: pyrogram.types.messages_and_media.message.Message):
-	bot.send_message(message.chat.id, f"__👋 Hi **{message.from_user.mention}**, **I am Save Restricted Bot.**\n\n{USAGE}",
-	reply_markup=InlineKeyboardMarkup([[ InlineKeyboardButton("🌐 Source Code", url="https://github.com/bipinkrish/Save-Restricted-Bot")]]), reply_to_message_id=message.id)
+	
 
-
-@bot.on_message(filters.text)
+@bot.on_message(filters.text & filters.user(Auth))
 def save(client: pyrogram.client.Client, message: pyrogram.types.messages_and_media.message.Message):
 	print(message.text)
 
@@ -298,10 +296,6 @@ def get_message_type(msg: pyrogram.types.messages_and_media.message.Message):
 		return "Text"
 	except: pass
 
-
-USAGE = """
-**Download Restricted Files from Private/Public Channels.**
-"""
 
 
 # infinty polling
